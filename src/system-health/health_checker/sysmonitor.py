@@ -19,7 +19,6 @@ spl_srv_list = ['database-chassis', 'gbsyncd']
 SELECT_TIMEOUT_MSECS = 1000
 QUEUE_TIMEOUT = 15
 TASK_STOP_TIMEOUT = 10
-mpmgr = multiprocessing.Manager()
 logger = Logger(log_identifier=SYSLOG_IDENTIFIER)
 
 
@@ -274,7 +273,7 @@ class Sysmonitor(ProcessTaskBase):
             
             sysctl_show = self.run_systemctl_show(event)
 
-            load_state = sysctl_show['LoadState']
+            load_state = sysctl_show.get('LoadState')
             if load_state == "loaded":
                 status = sysctl_show['UnitFileState']
                 fail_reason = sysctl_show['Result']
@@ -408,10 +407,13 @@ class Sysmonitor(ProcessTaskBase):
                 self.dnsrvs_name.remove(event)
             
             srv_name,last = event.split('.')
-            key = 'ALL_SERVICE_STATUS|{}'.format(srv_name)
-            key_exists = self.state_db.exists(self.state_db.STATE_DB, key)
-            if key_exists == 1:
-                self.state_db.delete(self.state_db.STATE_DB, key)
+            # stop on service maybe propagated to timers and in that case,
+            # the state_db entry for the service should not be deleted
+            if last == "service":
+                key = 'ALL_SERVICE_STATUS|{}'.format(srv_name)
+                key_exists = self.state_db.exists(self.state_db.STATE_DB, key)
+                if key_exists == 1:
+                    self.state_db.delete(self.state_db.STATE_DB, key)
         
         return 0
 
@@ -420,6 +422,7 @@ class Sysmonitor(ProcessTaskBase):
             self.state_db = swsscommon.SonicV2Connector(host='127.0.0.1')
             self.state_db.connect(self.state_db.STATE_DB)
         
+        mpmgr = multiprocessing.Manager()
         myQ = mpmgr.Queue()
         try:
             monitor_system_bus = MonitorSystemBusTask(myQ)
