@@ -13,10 +13,10 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "t7132s_platform_driver" ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "master" ]
+    branches: [ "t7132s_platform_driver" ]
   schedule:
     - cron: '36 18 * * 6'
 
