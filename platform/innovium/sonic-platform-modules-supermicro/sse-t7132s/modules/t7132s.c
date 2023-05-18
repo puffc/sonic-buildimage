@@ -257,7 +257,6 @@ static ssize_t swid_show(struct device *dev, struct device_attribute *attr,
 			  char *buf)
 {
 	uint8_t data = 0;
-	int err;
 	char *ptr = (cpld_data->cpld_base + CPLD1_REG_SW_ID);
 
 	mutex_lock(&cpld_data->lock);
@@ -272,7 +271,6 @@ static ssize_t hwrev_show(struct device *dev, struct device_attribute *attr,
 			  char *buf)
 {
 	uint8_t data = 0;
-	int err;
 	char *ptr = (cpld_data->cpld_base + CPLD1_REG_HWREV);
 
 	mutex_lock(&cpld_data->lock);
@@ -287,7 +285,6 @@ static ssize_t pwrgood_show(struct device *dev, struct device_attribute *attr,
 			    char *buf)
 {
 	uint8_t data = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_PWR_GOOD);
@@ -302,7 +299,6 @@ static ssize_t vrm_show(struct device *dev, struct device_attribute *attr,
 			char *buf)
 {
 	uint8_t data = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_VRM);
@@ -318,7 +314,6 @@ static ssize_t devstate_show(struct device *dev, struct device_attribute *attr,
 	uint8_t data = 0;
 	uint8_t data2 = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_DEV_STATE_1);
@@ -414,7 +409,6 @@ static ssize_t sysrst_rec_show(struct device *dev, struct device_attribute *attr
 			     char *buf)
 {
 	uint8_t data = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_SYS_RESET_REC);
@@ -446,7 +440,6 @@ static ssize_t muxstate_show(struct device *dev, struct device_attribute *attr,
 			     char *buf)
 {
 	uint8_t data = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_MUX_STATE);
@@ -479,7 +472,6 @@ static ssize_t xcvr_pwrstate_show(struct device *dev,
 	uint8_t data = 0;
 	uint8_t data2 = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_X_PWR_EN_2);
@@ -521,7 +513,6 @@ static ssize_t xcvr_pwrgood_show(struct device *dev,
 	uint8_t data = 0;
 	uint8_t data2 = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_X_PWR_GOOD_2);
@@ -543,7 +534,6 @@ static ssize_t cpld1_ver_bmc_i2c_show(struct device *dev,
 	uint8_t data3 = 0;
 	uint8_t data4 = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_VER_BMC_I2C_4);
@@ -567,7 +557,6 @@ static ssize_t cpld1_jed_rel_show(struct device *dev,
 	uint8_t data = 0;
 	uint8_t data2 = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + CPLD1_REG_JED_REL_DAY);
@@ -607,7 +596,6 @@ static ssize_t cpld1_testee_value_show(struct device *dev, struct device_attribu
 			     char *buf)
 {
 	uint8_t data = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld_base + cpld_testee_offset[0]);
@@ -661,7 +649,6 @@ static ssize_t cpld2_ver_show(struct device *dev, struct device_attribute *attr,
 			  char *buf)
 {
 	uint8_t data = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld2_base + CPLD2_REG_HWREV);
@@ -676,7 +663,6 @@ static ssize_t sysrdy_rst_status_show(struct device *dev,
 {
 	uint8_t data = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld2_base + 
@@ -715,7 +701,6 @@ static ssize_t all_xcvr_led_ctrl_show(struct device *dev,
 {
 	uint8_t data = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld2_base + 
@@ -757,7 +742,6 @@ static ssize_t cpld2_ver_bmc_i2c_show(struct device *dev,
 	uint8_t data3 = 0;
 	uint8_t data4 = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld2_base + CPLD2_REG_VER_BMC_I2C_4);
@@ -781,7 +765,6 @@ static ssize_t cpld2_jed_rel_show(struct device *dev,
 	uint8_t data = 0;
 	uint8_t data2 = 0;
 	long value = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld2_base + CPLD2_REG_JED_REL_DAY);
@@ -821,7 +804,6 @@ static ssize_t cpld2_testee_value_show(struct device *dev, struct device_attribu
 			     char *buf)
 {
 	uint8_t data = 0;
-	int err;
 
 	mutex_lock(&cpld_data->lock);
 	data = readb(cpld_data->cpld2_base + cpld_testee_offset[1]);
@@ -1686,7 +1668,7 @@ static int __init t7132s_init(void)
 {
 	int ret;
 
-	memset(&t7132s_dev, 0, sizeof(struct t7132s));
+	memzero_explicit(&t7132s_dev, sizeof(struct t7132s));
 	ret = pci_register_driver(&t7132s_pci_driver);
 
 	return ret;
