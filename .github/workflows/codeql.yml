@@ -14,10 +14,12 @@ name: "CodeQL"
 on:
   push:
     branches: [ "t7132s_platform_driver" ]
-    paths: ./platform/innovium/sonic-platform-modules-supermicro
+    paths: 'platform/innovium/sonic-platform-modules-supermicro/**'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ "t7132s_platform_driver" ]
+    paths: 'platform/innovium/sonic-platform-modules-supermicro/**'
+    
   schedule:
     - cron: '36 18 * * 6'
 
