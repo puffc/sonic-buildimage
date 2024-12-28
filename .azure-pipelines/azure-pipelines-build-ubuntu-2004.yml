@@ -26,9 +26,7 @@ stages:
   jobs:
   - job:
     displayName: "amd64/ubuntu-20.04"
-    pool:
-      vmImage: 'ubuntu-20.04'
-
+    pool: mypool
     steps:
     - checkout: self
       submodules: true
