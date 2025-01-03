@@ -58,8 +58,6 @@ stages:
       buildOptions: 'USERNAME=admin SONIC_BUILD_JOBS=$(nproc) BUILD_MULTIASIC_KVM=y INCLUDE_DHCP_SERVER=y ${{ variables.VERSION_CONTROL_OPTIONS }}'
       jobGroups:
       - name: vs
-- stage: BuildUbuntu
-  jobs:
   - job:
     displayName: "amd64/ubuntu-20.04"
     pool: mypool
